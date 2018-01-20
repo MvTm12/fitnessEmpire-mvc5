@@ -1,0 +1,26 @@
+﻿@model lab2.Models.UserVM
+
+
+
+@{
+    ViewBag.Title = "ViewUsers";
+}
+<script src="~/Scripts/jquery-1.10.2.js"></script>
+<script src="~/Scripts/jquery.validate.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+<h2>ViewUsers</h2>
+
+@*shows the user list using WebGrid*@
+
+@{
+    WebGrid obj = new WebGrid(Model.customers);
+}
+    @obj.GetHtml(
+        tableStyle: "table",
+        headerStyle: "head",
+        alternatingRowStyle: "alt",
+                columns: obj.Columns(
+                                    obj.Column("USER_ID" ,header:"Usar ID"), obj.Column("FNAME", header: "First Name"),
+                                    obj.Column("LNAME", header: "Last Name "),  obj.Column("Roles", header: "Permission ")
+                                    )
+                )

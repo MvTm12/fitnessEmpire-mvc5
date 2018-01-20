@@ -1,0 +1,45 @@
+﻿@model lab2.Models.Weights
+
+
+
+
+@Styles.Render("~/Content/Products_Shop.css")
+
+@{ double tPrice = Model.PRICE_OF1 * Model.WEIGHT;}
+
+@*partial view that dispaly weight in product card*@
+@*----------------------------------------------------------------------------------------------------------------*@
+
+
+<figure class="snip1418">
+    @if (TempData["ProdImg"] == null)
+    {
+        //if there isnt a pic in DB than show default pic
+        <img src="/Images/Def.jpg" alt="Missing Image" />
+    }
+    else
+    {
+        // take pic from DB
+        <img src="/Images/@TempData["ProdImg"]" alt="@TempData["ProdDesc"]" /> 
+
+    }
+    <div class="add-to-cart"> @*<i class="ion-android-add">*@</i><span>@*Add to Cart*@</span></div>
+    <figcaption>
+         @*name of weight*@
+        <h3>@Model.WEIGHT_TYPE</h3>
+
+        @*prodeuct details*@ 
+        <p style="color:cornflowerblue;font-size:14px;">Weights | Weight:@Model.WEIGHT kg | Coverd:@Model.COVERED</p>
+
+        @*descroption part*@   
+        <p>@TempData["ProdDesc"]</p>  
+    
+        @*price of product weight*price of 1 kg*@                                
+        <div class="price">
+            $@tPrice.ToString("F2")
+                
+                  
+        </div>
+    </figcaption><a href="#"></a>
+</figure>
+

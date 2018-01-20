@@ -1,0 +1,35 @@
+﻿@model lab2.Models.Mechine
+
+
+
+
+@Styles.Render("~/Content/Products_Shop.css")
+
+
+@*partial view that dispaly mechine in product card*@
+@*----------------------------------------------------------------------------------------------------------------*@
+
+
+<figure class="snip1418">
+    @*if there is a pic of product than put this pic to product and if not than put default pic*@
+
+        @if (TempData["ProdImg"] == null)
+        {
+            <img src="/Images/Def.jpg" alt="Missing Image" />
+        }
+        else
+        {
+            <img src="/Images/@TempData["ProdImg"]" alt="@TempData["ProdDesc"]" />
+        }
+
+    <div class="add-to-cart"> @*<i class="ion-android-add">*@</i><span>@*Add to Cart*@</span></div>
+    <figcaption>
+        <h3>@Model.NAME</h3>
+        <p style="color:cornflowerblue;font-size:14px;">Mechine | Max-Weight:@Model.MAX_WEIGHT kg</p> 
+        <p>@TempData["ProdDesc"]</p>
+        <div class="price">
+            $@Model.PRICE.ToString("F2") 
+        </div>
+    </figcaption><a href="#"></a>
+</figure>
+

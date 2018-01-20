@@ -1,0 +1,22 @@
+﻿@model lab2.Models.ShopVM
+@{
+    ViewBag.Title = "Contact";
+}
+
+@Styles.Render("~/Content/Site.css")
+@Styles.Render("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css")
+
+
+<h2>Contact</h2>
+<div class="product-container">
+    <div class="container">
+        <div class="row">
+            @foreach (var s in Model.Shops)
+            {
+                // run partial view that show  each contact card
+              @Html.Partial("Contact_Card",s)
+            }
+        </div>
+    </div>
+</div>
+

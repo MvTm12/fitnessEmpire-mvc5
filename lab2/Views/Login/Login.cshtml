@@ -1,0 +1,29 @@
+﻿@model lab2.Models.UserLogin
+
+@{
+    ViewBag.Title = "Login";
+}
+
+<script src="~/Scripts/jquery-1.10.2.js"></script>
+<script src="~/Scripts/jquery.validate.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+
+
+<body>
+    <h2>Login</h2>
+    @using (Html.BeginForm("Authenticate", "Login", FormMethod.Post))
+    {
+        <i>User ID:   </i>@Html.TextBoxFor(m => m.USER_ID, new { @class = "form-control", placeholder = "User ID" })<i>   </i>        <div style="color:red">
+             @Html.ValidationMessageFor(x => x.USER_ID) </div>
+        <br />
+        <i>Password: </i>@Html.TextBoxFor(m => m.PASSWORD, new { @class = "form-control", placeholder = "Password", @type = "password" })<i>   </i>        <div style="color:red">
+            @Html.ValidationMessageFor(x => x.PASSWORD) </div>
+        <br />
+        <h5 style="color:red; font-size:15px;">@ViewBag.msg </h5>
+
+        // submit button
+        <input id="Submit" name="Submit" type="submit" value="Login" class="btn btn-default" />
+        }
+
+
+</body>

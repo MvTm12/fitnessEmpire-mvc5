@@ -1,0 +1,36 @@
+﻿@model lab2.Models.ShopsM
+<script src="~/Scripts/Contact_Card.js"></script>
+@Styles.Render("~/Content/Contact_Card.css")   @*from here we take the style sheet*@
+
+
+            <div class="col-sm-4">
+                <div class="product-card">
+                    <div class="card-thumbnail">
+                        <img class="img-responsive" src="/Images/contact.jpeg">  @*give the contact card  img*@
+                    </div>
+                    <div class="card-content">
+                        <div class="send">
+                            <i class="fa fa-send fa-2x"></i>
+                        </div>
+                        <h1 class="card-title">
+                           Fitness Empire - @Model.City     @*the headline of card -  name of shop+ city*@
+                        </h1>
+                        <h2 class="card-sub-title">
+                            <i class="fa fa-map-marker"></i> @Model.Address .   @* the address of shop*@
+                        </h2>
+
+                        <ul class="list-inline post-meta">
+                            <li class="card-comment">
+                                <i class="fa fa-phone"></i><a href="#"> @Model.Phone</a>    @* the phone number of shop*@
+                            </li>
+                            <li class="time-stamp">
+                                <i class="fa fa-clock-o"></i> Week Days: @Model.Week_days<br/>  @* the opening hours of shop*@
+                                <i class="fa fa-clock-o"></i> Weekends/Holidays: @Model.Week_end    @* the opening hours of shop*@
+                            </li>
+
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+

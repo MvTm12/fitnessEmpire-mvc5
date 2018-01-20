@@ -1,0 +1,42 @@
+﻿@model lab2.Models.ShopVM
+
+
+@{
+    ViewBag.Title = "Shop";
+}
+
+
+    <h2>Shop</h2>
+@*@Html.Partial("Search_Bar")*@
+<div style="padding-left: 5%; padding-right: 5%;">
+    @{ foreach (var x in Model.prods)
+        {
+            foreach (var y in Model.Weights)
+            {
+                if (x.PRODUCT_ID == y.PRODUCT_ID)
+                {
+                    TempData["ProdDesc"] = x.DESCRIPTION;
+                    TempData["ProdImg"] = x.PICNAME;
+                    TempData["ProdID"] = x.PRODUCT_ID;
+                    Html.RenderPartial("Display_Weights", y);
+                    break;
+                }
+
+            }
+            foreach (var y in Model.Mechines)
+            {
+                if (x.PRODUCT_ID == y.PRODUCT_ID)
+                {
+                    TempData["ProdDesc"] = x.DESCRIPTION;
+                    TempData["ProdImg"] = x.PICNAME;
+                    TempData["ProdID"] = x.PRODUCT_ID;
+                    Html.RenderPartial("Display_Mechines", y);
+                    break;
+                }
+
+            }
+
+        }
+    }
+</div>
+

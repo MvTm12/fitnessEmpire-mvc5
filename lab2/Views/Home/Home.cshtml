@@ -1,0 +1,86 @@
+﻿@using lab2.Models;
+
+@{
+    ViewBag.Title = "Home";
+}
+
+
+@Styles.Render("~/Content/new.css")
+
+@*the slider of the home page*@
+<br/>
+<div class="outer-wrapper">
+    <div class="s-wrap s-type-2" role="slider">
+        <ul class="s-content">
+            <li class="s-item s-item-1"></li>
+            <li class="s-item s-item-2"></li>
+            <li class="s-item s-item-3"></li>
+            <li class="s-item s-item-4"></li>
+            <li class="s-item s-item-5"></li>
+        </ul>
+    </div>
+</div>
+
+<h2 style="color:firebrick">Soon at Fitness Empire</h2>
+<div class="remove-all-styles other-classe another-class">
+
+@*the products that shoed in the home page*@ 
+    <div class="soon_prod" style="padding-left: 5%; padding-right: 5%;">
+        @{
+            // the first product
+            Weights first = new Weights()
+            {
+                WEIGHT_TYPE = "Dumbbell",
+                PRODUCT_ID = "99",
+                PRICE_OF1 = 2,
+                COVERED = "YES",
+                WEIGHT = 35
+            };
+            // description
+            TempData["ProdDesc"] = "";
+            // img name
+            TempData["ProdImg"] = "27.jpg";
+            // sending the id if in the future we want to add the item to shop
+            TempData["ProdID"] = first.PRODUCT_ID;
+            // the partial view that show the product
+            Html.RenderPartial("~/Views/User/Display_Weights.cshtml", first);
+
+            // the second pdosuct 
+            Mechine second = new Mechine()
+            {
+                PRODUCT_ID = "98",
+                NAME = "Multi Trainer",
+                MAX_WEIGHT = 200,
+                PRICE = 750
+            };
+            // description
+            TempData["ProdDesc"] = "";
+            // img name
+            TempData["ProdImg"] = "28.jpg";
+            // sending the id if in the future we want to add the item to shop
+            TempData["ProdID"] = second.PRODUCT_ID;
+            // the partial view that show the product
+            Html.RenderPartial("~/Views/User/Display_Mechines.cshtml", second);
+
+            // the third product
+            Weights third = new Weights()
+            {
+                WEIGHT_TYPE = "Olympic weight set",
+                PRODUCT_ID = "99",
+                PRICE_OF1 = 3,
+                COVERED = "NO",
+                WEIGHT = 300
+            };
+            // description
+            TempData["ProdDesc"] = "";
+            // img name
+            TempData["ProdImg"] = "29.jpg";
+            // sending the id if in the future we want to add the item to shop
+            TempData["ProdID"] = third.PRODUCT_ID;
+            // the partial view that show the product
+            Html.RenderPartial("~/Views/User/Display_Weights.cshtml", third);
+        }
+    </div>
+
+</div>
+

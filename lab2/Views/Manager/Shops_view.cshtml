@@ -1,0 +1,98 @@
+﻿@model lab2.Models.ShopVM
+@using lab2.Models;
+
+@{
+    ViewBag.Title = "Shops view";
+}
+<script src="~/Scripts/jquery-1.10.2.js"></script>
+<script src="~/Scripts/jquery.validate.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+<h2>Shops_view</h2>
+
+
+@using (Html.BeginForm("SubmitShop", "Manager", FormMethod.Post))
+{
+    <table class="form-group">
+        @*<tr>
+            <td>Shop ID:</td>
+            <td>@Html.TextBoxFor(m => m.Shop.ID)   <div style="color:red">  @Html.ValidationMessageFor(x => x.Shop.ID)</div> </td>
+        </tr>*@
+        <tr>
+            <td>City:</td>
+            <td>@Html.TextBoxFor(m => m.Shop.City)  <div style="color:red"> @Html.ValidationMessageFor(x => x.Shop.City)</div></td>
+        </tr>
+        <tr>
+            <td>Address:</td>
+            <td>@Html.TextBoxFor(m => m.Shop.Address)  <div style="color:red"> @Html.ValidationMessageFor(x => x.Shop.Address)</div></td>
+        </tr>
+        <tr>
+            <td>Phone:</td>
+            <td>@Html.TextBoxFor(m => m.Shop.Phone)  <div style="color:red"> @Html.ValidationMessageFor(x => x.Shop.Phone)</div></td>
+        </tr>
+        <tr>
+            <td>Week:</td>
+            <td>@Html.TextBoxFor(m => m.Shop.Week_days)  <div style="color:red"> @Html.ValidationMessageFor(x => x.Shop.Week_days)</div></td>
+        </tr>
+        <tr>
+            <td>Weekend:</td>
+            <td>@Html.TextBoxFor(m => m.Shop.Week_end)  <div style="color:red"> @Html.ValidationMessageFor(x => x.Shop.Week_end)</div></td>
+        </tr>
+    </table>
+    <br />
+    <input id="SubmitShop" name="SubmitShop" type="submit" value="Add Shop" class="btn btn-default" />
+}
+
+
+<h3>Current Shops</h3>
+<br/>
+
+<div id="status"></div>
+<br/>
+
+<table class="table" id="Shop_table">
+        <tr>
+            <td>ID</td>
+            <td>City</td>
+            <td>Address</td>
+            <td>Phone</td>
+            <td>Week days</td>
+            <td>Weekens </td>
+        </tr>
+        @*@foreach(ShopsM s in Model.Shops)
+        {
+            <tr>
+                <td>@s.ID</td>
+                <td>@s.City</td>
+                <td>@s.Address</td>
+                <td>@s.Phone</td>
+                <td>@s.Week_days</td>
+                <td>@s.Week_end</td>
+            </tr>
+        }*@
+    </table>
+
+    <script language="javascript">        
+      
+        $("#status").text("Loading....");
+        
+        $.get("Get_Shop_By_Json", null, BindData);
+        function BindData(Shops)
+        {
+            var tbl = $("#Shop_table");
+
+            for(k=0;k<Shops.length;k++)
+            {
+                var newRow="<tr>"+
+                    "<td>" + Shops[k].ID+"</td>"+
+                    "<td>" + Shops[k].City+"</td>"+
+                    "<td>" + Shops[k].Address+"</td>"+
+                    "<td>" + Shops[k].Phone+"</td>"+
+                    "<td>" + Shops[k].Week_days+"</td>"+
+                    "<td>" + Shops[k].Week_end+"</td>"+
+                    "</tr>"
+                tbl.append(newRow);
+            }
+
+            $("#status").text("");
+        }
+    </script>

@@ -1,0 +1,78 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fitness Empire - @ViewBag.Title</title>
+
+    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Open+Sans" />
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body style="background-color:#fafafa;">
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                @Html.ActionLink(" ", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+            </div>
+            <div class="navbar-collapse collapse">
+                @if (Request.IsAuthenticated)
+                {
+                    // if you enterd to the site show this buttons
+                <ul class="nav navbar-nav">
+                    <li>@Html.ActionLink("Home", "Home", "Home")</li>
+                    <li>@Html.ActionLink("Shop", "Shop", "User")</li>
+                    <li>@Html.ActionLink("About", "About", "Home")</li>
+                    <li>@Html.ActionLink("Contact us", "Contact", "Home")</li>
+                </ul>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a href="#">Hello  @Request.Cookies["UserName"].Value !</a></li>
+                        @*@Html.ActionLink("Hello " + Request.Cookies["UserName"].Value + "!", "#")*@
+                        @if(User.IsInRole("MANAGER")) // if its a manager so shoe the user this optiones
+                        {
+                            <li>@Html.ActionLink("|  Manage", "Manage", "Manager")</li>
+                        }         
+                        <li>@Html.ActionLink("|  Logout", "LogOut", "User", routeValues: null, htmlAttributes: new { id = "LogoutLink" })</li>
+                    </ul>
+                }
+                else
+                {
+                    // if the user not loged in than show this options
+                    <ul class="nav navbar-nav">
+                        <li>@Html.ActionLink("Home", "Home", "Home")</li>
+                        <li>@Html.ActionLink("About", "About", "Home")</li>
+                        <li>@Html.ActionLink("Contact us", "Contact", "Home")</li>
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li>@Html.ActionLink("Register", "Enter", "Home", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
+                        <li>@Html.ActionLink("Log in", "Index", "Login", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
+                    </ul>
+                }
+                
+            </div>
+        </div>
+    </div>
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+
+    </div>
+    <footer>
+        <div class="content-wrapper">
+            <div class="footer_new" style="margin-top:  20px;">
+                <p>&copy; @DateTime.Now.Year - Fitness Empire</p>
+            </div>
+        </div>
+
+    </footer>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

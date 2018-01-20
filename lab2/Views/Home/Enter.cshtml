@@ -1,0 +1,35 @@
+﻿
+
+@model lab2.Models.User
+@using lab2.Models
+@{
+    ViewBag.Title = "Register";
+}
+
+<script src="~/Scripts/jquery-1.10.2.js"></script>
+<script src="~/Scripts/jquery.validate.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+
+
+<body>
+     @*form that the user fill in order to register to the site *@
+    <h2>Register</h2>
+    @using (Html.BeginForm("details", "Home", FormMethod.Post))
+    {
+        // user id
+        <i>User ID:   </i>@Html.TextBoxFor(m => m.USER_ID, new { @class = "form-control", placeholder = "User ID" })<i>   </i>        <div style="color:red"> @Html.ValidationMessageFor(x => x.USER_ID) </div>
+        <br />
+        // user password
+        <i>Password: </i>@Html.TextBoxFor(m => m.PASSWORD, new { @class = "form-control", placeholder = "Password", @type = "password" })<i>   </i>        <div style="color:red"> @Html.ValidationMessageFor(x => x.PASSWORD)</div>
+        <br />
+        // user name
+        <i>First name:</i>@Html.TextBoxFor(m => m.FNAME, new { @class = "form-control", placeholder = "First Name" })<i>         </i> <div style="color:red"> @Html.ValidationMessageFor(x => x.FNAME)</div>
+        <br />
+        // user last name
+        <i>Last name: </i>@Html.TextBoxFor(m => m.LNAME, new { @class = "form-control", placeholder = "Last Name" })<i>          </i><div style="color:red"> @Html.ValidationMessageFor(x => x.LNAME) </div>
+        <br />
+    // the submit button
+    <input id="Submit1" type="submit" value="enter details"  class="btn btn-default"/>
+     }
+</body>
+
